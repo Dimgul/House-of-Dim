@@ -1,0 +1,548 @@
+{
+  "id": "a37c4938-1d46-4273-abf6-273a5c037a5a",
+  "revision": 0,
+  "last_node_id": 17,
+  "last_link_id": 14,
+  "nodes": [
+    {
+      "id": 8,
+      "type": "HEDPreprocessor",
+      "pos": [
+        937,
+        977
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            6
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_controlnet_aux",
+        "ver": "1.1.0",
+        "Node name for S&R": "HEDPreprocessor"
+      },
+      "widgets_values": [
+        "enable",
+        512
+      ]
+    },
+    {
+      "id": 1,
+      "type": "OpenposePreprocessor",
+      "pos": [
+        934,
+        1134
+      ],
+      "size": [
+        315,
+        174
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            4
+          ]
+        },
+        {
+          "name": "POSE_KEYPOINT",
+          "type": "POSE_KEYPOINT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_controlnet_aux",
+        "ver": "1.1.0",
+        "Node name for S&R": "OpenposePreprocessor"
+      },
+      "widgets_values": [
+        "enable",
+        "enable",
+        "enable",
+        512,
+        "disable"
+      ]
+    },
+    {
+      "id": 13,
+      "type": "MiDaS-DepthMapPreprocessor",
+      "pos": [
+        939,
+        798
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_controlnet_aux",
+        "ver": "1.1.0",
+        "Node name for S&R": "MiDaS-DepthMapPreprocessor"
+      },
+      "widgets_values": [
+        6.283185307179586,
+        0.1,
+        512
+      ]
+    },
+    {
+      "id": 4,
+      "type": "LoadImagesFromDirectory",
+      "pos": [
+        475,
+        876
+      ],
+      "size": [
+        315,
+        146
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            3,
+            5,
+            11,
+            13
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-advanced-controlnet",
+        "ver": "1.5.6",
+        "Node name for S&R": "LoadImagesFromDirectory"
+      },
+      "widgets_values": [
+        "H:\\House of Dim\\AI Stuff\\Poses\\Test Pose",
+        128,
+        0
+      ]
+    },
+    {
+      "id": 16,
+      "type": "SAMPreprocessor",
+      "pos": [
+        939.718017578125,
+        1376.4368896484375
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_controlnet_aux",
+        "ver": "1.1.0",
+        "Node name for S&R": "SAMPreprocessor"
+      },
+      "widgets_values": [
+        512
+      ]
+    },
+    {
+      "id": 17,
+      "type": "SaveImageExtended",
+      "pos": [
+        1397,
+        1365
+      ],
+      "size": [
+        315,
+        598
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 14
+        },
+        {
+          "name": "positive_text_opt",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "name": "negative_text_opt",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "save-image-extended-comfyui",
+        "ver": "2.64.0",
+        "Node name for S&R": "SaveImageExtended"
+      },
+      "widgets_values": [
+        "pose",
+        "steps, cfg",
+        "segs",
+        "sampler_name, scheduler",
+        "underscore",
+        "basic, prompt",
+        "disabled",
+        "",
+        "enabled",
+        3,
+        "last",
+        "disabled",
+        "enabled",
+        "",
+        ""
+      ],
+      "color": "#2b2b2b",
+      "bgcolor": "#191919"
+    },
+    {
+      "id": 9,
+      "type": "SaveImageExtended",
+      "pos": [
+        1874,
+        645
+      ],
+      "size": [
+        315,
+        598
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 6
+        },
+        {
+          "name": "positive_text_opt",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "name": "negative_text_opt",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "save-image-extended-comfyui",
+        "ver": "2.64.0",
+        "Node name for S&R": "SaveImageExtended"
+      },
+      "widgets_values": [
+        "pose",
+        "steps, cfg",
+        "lines",
+        "sampler_name, scheduler",
+        "underscore",
+        "basic, prompt",
+        "disabled",
+        "",
+        "enabled",
+        3,
+        "last",
+        "disabled",
+        "enabled",
+        "",
+        ""
+      ],
+      "color": "#2b2b2b",
+      "bgcolor": "#191919"
+    },
+    {
+      "id": 11,
+      "type": "SaveImageExtended",
+      "pos": [
+        1373,
+        348
+      ],
+      "size": [
+        320.6307067871094,
+        598.3886108398438
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 12
+        },
+        {
+          "name": "positive_text_opt",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "name": "negative_text_opt",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "save-image-extended-comfyui",
+        "ver": "2.64.0",
+        "Node name for S&R": "SaveImageExtended"
+      },
+      "widgets_values": [
+        "pose",
+        "steps, cfg",
+        "depth",
+        "sampler_name, scheduler",
+        "underscore",
+        "basic, prompt",
+        "disabled",
+        "",
+        "enabled",
+        3,
+        "last",
+        "disabled",
+        "enabled",
+        "",
+        ""
+      ],
+      "color": "#2b2b2b",
+      "bgcolor": "#191919"
+    },
+    {
+      "id": 7,
+      "type": "SaveImageExtended",
+      "pos": [
+        1882,
+        1304
+      ],
+      "size": [
+        315,
+        598
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "name": "positive_text_opt",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "name": "negative_text_opt",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "save-image-extended-comfyui",
+        "ver": "2.64.0",
+        "Node name for S&R": "SaveImageExtended"
+      },
+      "widgets_values": [
+        "pose",
+        "steps, cfg",
+        "pose",
+        "sampler_name, scheduler",
+        "underscore",
+        "basic, prompt",
+        "disabled",
+        "",
+        "enabled",
+        3,
+        "last",
+        "disabled",
+        "enabled",
+        "",
+        ""
+      ],
+      "color": "#2b2b2b",
+      "bgcolor": "#191919"
+    }
+  ],
+  "links": [
+    [
+      3,
+      4,
+      0,
+      1,
+      0,
+      "IMAGE"
+    ],
+    [
+      4,
+      1,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      4,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ],
+    [
+      6,
+      8,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      11,
+      4,
+      0,
+      13,
+      0,
+      "IMAGE"
+    ],
+    [
+      12,
+      13,
+      0,
+      11,
+      0,
+      "IMAGE"
+    ],
+    [
+      13,
+      4,
+      0,
+      16,
+      0,
+      "IMAGE"
+    ],
+    [
+      14,
+      16,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.6588450000000002,
+      "offset": [
+        125.82847807093151,
+        -333.0952119533938
+      ]
+    },
+    "frontendVersion": "1.25.11",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
