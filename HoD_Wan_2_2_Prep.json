@@ -1,0 +1,197 @@
+{
+  "id": "9eb0484e-66fc-4965-91fa-9e2f0bae09aa",
+  "revision": 0,
+  "last_node_id": 17,
+  "last_link_id": 17,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "OpenposePreprocessor",
+      "pos": [
+        918.1109008789062,
+        905.7014770507812
+      ],
+      "size": [
+        315,
+        174
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            4
+          ]
+        },
+        {
+          "name": "POSE_KEYPOINT",
+          "type": "POSE_KEYPOINT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_controlnet_aux",
+        "ver": "1.1.0",
+        "Node name for S&R": "OpenposePreprocessor"
+      },
+      "widgets_values": [
+        "enable",
+        "enable",
+        "enable",
+        512,
+        "disable"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "SaveImageExtended",
+      "pos": [
+        1300.4315185546875,
+        906.7443237304688
+      ],
+      "size": [
+        315,
+        698
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "name": "positive_text_opt",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        },
+        {
+          "name": "negative_text_opt",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "save-image-extended-comfyui",
+        "ver": "2.64.0",
+        "Node name for S&R": "SaveImageExtended"
+      },
+      "widgets_values": [
+        "pose",
+        "",
+        "pose",
+        "",
+        "underscore",
+        "disabled",
+        "disabled",
+        "",
+        false,
+        3,
+        "last",
+        "disabled",
+        "enabled",
+        ".jpg",
+        80
+      ],
+      "color": "#2b2b2b",
+      "bgcolor": "#191919"
+    },
+    {
+      "id": 4,
+      "type": "LoadImagesFromDirectory",
+      "pos": [
+        546.9183959960938,
+        908.6142578125
+      ],
+      "size": [
+        315,
+        146
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            3
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        },
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-advanced-controlnet",
+        "ver": "1.5.6",
+        "Node name for S&R": "LoadImagesFromDirectory"
+      },
+      "widgets_values": [
+        "C:\\Users\\joshs\\Downloads\\Working Folder\\Runway Walk",
+        128,
+        0
+      ]
+    }
+  ],
+  "links": [
+    [
+      3,
+      4,
+      0,
+      1,
+      0,
+      "IMAGE"
+    ],
+    [
+      4,
+      1,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.2839025177495011,
+      "offset": [
+        -162.41989304454407,
+        -621.0606016243513
+      ]
+    },
+    "frontendVersion": "1.25.11",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
